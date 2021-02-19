@@ -1,0 +1,463 @@
+components:
+  schemas:
+    AttributeType:
+      description: AttributeType entity
+      properties:
+        id:
+          description: The AttributeType id.
+          type: integer
+          format: int64
+        name:
+          description: The entity Name.
+          type: string
+        code:
+          description: The entity Code.
+          type: string
+        description:
+          description: The entity Description.
+          type: string
+      type: object
+    Attribute:
+      description: Attribute entity
+      properties:
+        id:
+          description: The Attribute id.
+          type: integer
+          format: int64
+        typeId:
+          description: The attribute type id.
+          type: integer
+          format: int64
+        value:
+          description: The attribute value.
+          type: string
+        description:
+          description: The attribute Description.
+          type: string
+        languageId:
+          description: The atribute language.
+          type: integer
+          format: int64
+        createdOn:
+          description: The atribute createdOn.
+          type: string
+        createdBy:
+          description: The atribute createdBy.
+          type: integer
+          format: int64
+        deletedOn:
+          description: The atribute deletedOn.
+          type: string
+        deletedBy:
+          description: The atribute deletedBy.
+          type: integer
+          format: int64
+        updatedOn:
+          description: The atribute updatedOn.
+          type: string
+        updatedBy:
+          description: The atribute updatedBy.
+          type: integer
+          format: int64
+      type: object
+
+info:
+  description: "smart stone project description"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+  title: "Smart Stone API"
+  version: v1.0
+openapi: 3.0.1
+paths:
+  "/attributeType/attributeTypeCode/{code}":
+    get:
+      operationId: getAttributeTypeByCode
+      tags: [ "AttributeType" ]
+      summary: Finds attributeType by Code
+      description: Multiple status values can be provided with comma separated strings
+      parameters:
+        - in: path
+          name: code
+          required: true
+          schema:
+            type: string
+            enum:
+              - MATERIAL_TYPE
+              - STONE_TYPE
+              - FINISHING_TYPE
+              - TILING_TYPE
+              - COLOR
+              - GRADE
+              - APPLICATION
+              - AVAILABLE_SIZES
+              - CUTTING_TYPE
+            default: MATERIAL_TYPE
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttributeType'
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    description: The attributeType ID.
+                  name:
+                    type: string
+                    description: The attributeType name.
+                  description:
+                    type: string
+                    description: The attributeType description.
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AttributeType'
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    description: The attributeType ID.
+                  name:
+                    type: string
+                    description: The attributeType name.
+                  description:
+                    type: string
+                    description: The attributeType description.
+          description: successful operation
+        '400':
+          description: Invalid status value
+  "/attributeType/attributeTypeId/{id}":
+    get:
+      operationId: getAttributeTypeById
+      tags: [ "AttributeType" ]
+      summary: Finds attributeType by Id
+      description: Multiple status values can be provided with comma separated strings
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttributeType'
+                properties:
+                  code:
+                    type: string
+                    description: The attributeType code.
+                  name:
+                    type: string
+                    description: The attributeType name.
+                  description:
+                    type: string
+                    description: The attributeType description.
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AttributeType'
+                properties:
+                  code:
+                    type: string
+                    description: The attributeType ID.
+                  name:
+                    type: string
+                    description: The attributeType name.
+                  description:
+                    type: string
+                    description: The attributeType description.
+          description: successful operation
+        '400':
+          description: Invalid status value
+  "/attributeTypes":
+    get:
+      operationId: getAttributeTypesPage
+      tags: [ "AttributeType" ]
+      summary: Finds All attributeTypes
+      description: Multiple status values can be provided with comma separated strings
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AttributeType'
+                type: array
+            application/xml:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AttributeType'
+                type: array
+          description: successful operation
+        '400':
+          description: Invalid status value
+  "/attribute/{id}":
+    delete:
+      operationId: deleteAttribute
+      tags: [ "Attribute" ]
+      summary: deletes an attributeType
+      description: Multiple status values can be provided with comma separated strings
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        204:
+          description: ""
+          content:
+            application/json: { }
+            application/xml: { }
+        '400':
+          description: Invalid status value
+    put:
+      operationId: putAttribute
+      tags: [ "Attribute" ]
+      description: Replaces the attribute with the information sent in the request body.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Attribute"
+          application/xml:
+            schema:
+              $ref: "#/components/schemas/Attribute"
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Attribute"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/Attribute"
+  "/attribute/id/{id}":
+    get:
+      operationId: getAttributeById
+      tags: [ "Attribute" ]
+      summary: Finds attribute by id
+      description: Multiple status values can be provided with comma separated strings
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Attribute'
+                properties:
+                  languageId:
+                    type: integer
+                    format: int64
+                    description: The Attribute languageId.
+                  typeId:
+                    type: integer
+                    format: int64
+                    description: The Attribute typeId.
+                  value:
+                    type: string
+                    description: The Attribute value.
+                  description:
+                    type: string
+                    description: The Attribute description.
+                  createdOn:
+                    type: string
+                    description: The Attribute createdOn.
+                  createdBy:
+                    type: integer
+                    format: int64
+                    description: The Attribute createdBy.
+                  modifiedOn:
+                    type: string
+                    description: The Attribute modifiedOn.
+                  modifiedBy:
+                    type: integer
+                    format: int64
+                    description: The Attribute modifiedBy.
+                  deletedOn:
+                    type: string
+                    description: The Attribute deletedOn.
+                  deletedBy:
+                    type: integer
+                    format: int64
+                    description: The Attribute deletedBy.
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Attribute'
+                properties:
+                  languageId:
+                    type: integer
+                    format: int64
+                    description: The Attribute languageId.
+                  typeId:
+                    type: integer
+                    format: int64
+                    description: The Attribute typeId.
+                  value:
+                    type: string
+                    description: The Attribute value.
+                  description:
+                    type: string
+                    description: The Attribute description.
+                  createdOn:
+                    type: string
+                    description: The Attribute createdOn.
+                  createdBy:
+                    type: integer
+                    format: int64
+                    description: The Attribute createdBy.
+                  modifiedOn:
+                    type: string
+                    description: The Attribute modifiedOn.
+                  modifiedBy:
+                    type: integer
+                    format: int64
+                    description: The Attribute modifiedBy.
+                  deletedOn:
+                    type: string
+                    description: The Attribute deletedOn.
+                  deletedBy:
+                    type: integer
+                    format: int64
+                    description: The Attribute deletedBy.
+          description: successful operation
+        '400':
+          description: Invalid status value
+  "/attribute/typeId/{typeId}":
+    get:
+      operationId: getAttributeByTypeId
+      tags: [ "Attribute" ]
+      summary: Finds attribute by typeId
+      description: Multiple status values can be provided with comma separated strings
+      parameters:
+        - in: path
+          name: typeId
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Attribute'
+                properties:
+                  languageId:
+                    type: integer
+                    format: int64
+                    description: The Attribute languageId.
+                  id:
+                    type: integer
+                    format: int64
+                    description: The Attribute id.
+                  value:
+                    type: string
+                    description: The Attribute value.
+                  description:
+                    type: string
+                    description: The Attribute description.
+                  createdOn:
+                    type: string
+                    description: The Attribute createdOn.
+                  createdBy:
+                    type: integer
+                    format: int64
+                    description: The Attribute createdBy.
+                  modifiedOn:
+                    type: string
+                    description: The Attribute modifiedOn.
+                  modifiedBy:
+                    type: integer
+                    format: int64
+                    description: The Attribute modifiedBy.
+                  deletedOn:
+                    type: string
+                    description: The Attribute deletedOn.
+                  deletedBy:
+                    type: integer
+                    format: int64
+                    description: The Attribute deletedBy.
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Attribute'
+                properties:
+                  languageId:
+                    type: integer
+                    format: int64
+                    description: The Attribute languageId.
+                  id:
+                    type: integer
+                    format: int64
+                    description: The Attribute id.
+                  value:
+                    type: string
+                    description: The Attribute value.
+                  description:
+                    type: string
+                    description: The Attribute description.
+                  createdOn:
+                    type: string
+                    description: The Attribute createdOn.
+                  createdBy:
+                    type: integer
+                    format: int64
+                    description: The Attribute createdBy.
+                  modifiedOn:
+                    type: string
+                    description: The Attribute modifiedOn.
+                  modifiedBy:
+                    type: integer
+                    format: int64
+                    description: The Attribute modifiedBy.
+                  deletedOn:
+                    type: string
+                    description: The Attribute deletedOn.
+                  deletedBy:
+                    type: integer
+                    format: int64
+                    description: The Attribute deletedBy.
+          description: successful operation
+        '400':
+          description: Invalid status value
+  "/attribute":
+    post:
+      operationId: postAttribute
+      tags: [ "Attribute" ]
+      description: Create a new attribute.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Attribute"
+          application/xml:
+            schema:
+              $ref: "#/components/schemas/Attribute"
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Attribute"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/Attribute"

@@ -1,0 +1,10 @@
+Bundle-Name: smartstone-service
+Bundle-SymbolicName: com.pds.smartstone.service
+Bundle-Version: 1.0.0
+Export-Package:\
+	com.pds.smartstone.model.impl,\
+    com.pds.smartstone.service.persistence,\
+    com.pds.smartstone.service.persistence.impl
+Liferay-Require-SchemaVersion: 1.0.0
+Liferay-Service: true
+-dsannotations-options: inherit

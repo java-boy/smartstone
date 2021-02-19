@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 7.3.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_7_3_0.dtd">
+
+<service-builder dependency-injector="ds" package-path="com.pds.smartstone">
+	<namespace>SmartStone</namespace>
+
+	<entity name="PersistedAttributeType" local-service="true" remote-service="false" uuid="true" table="AttributeType" data-source="extDataSource">
+
+		<!-- PK fields -->
+
+		<column name="id" primary="true" type="long" db-name="id" />
+
+		<!-- Other fields -->
+
+		<column name="name" db-name="name" type="String" />
+		<column name="code" db-name="code" type="String" />
+		<column name="description" db-name="description" type="String" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="code" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="id" return-type="Collection">
+			<finder-column name="id" />
+		</finder>
+		<finder name="code" return-type="Collection">
+			<finder-column name="code" />
+		</finder>
+
+	</entity>
+	<entity name="PersistedAttribute" local-service="true" remote-service="false" uuid="true" table="Attribute" data-source="extDataSource">
+
+		<!-- PK fields -->
+
+		<column name="id" primary="true" type="long" db-name="id" />
+
+		<!-- Other fields -->
+
+		<column name="typeId" db-name="typeId" type="long" />
+		<column name="value" db-name="value" type="String" />
+		<column name="description" db-name="description" type="String" />
+		<column name="languageId" db-name="languageId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="createdOn" type="Date" />
+		<column name="createdBy" type="long" />
+		<column name="modifiedOn" type="Date" />
+		<column name="modifiedBy" type="long" />
+		<column name="deletedOn" type="Date" />
+		<column name="deletedBy" type="long" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="typeId" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="typeId" return-type="Collection">
+			<finder-column name="typeId" />
+		</finder>
+
+		<finder name="id" return-type="Collection">
+			<finder-column name="id" />
+		</finder>
+		<finder name="idAndTypeId" return-type="Collection">
+			<finder-column name="typeId" />
+			<finder-column name="id" />
+		</finder>
+	</entity>
+</service-builder>

@@ -1,0 +1,10 @@
+Bundle-Name: smartstone-api
+Bundle-SymbolicName: com.pds.smartstone.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	com.pds.smartstone.exception,\
+	com.pds.smartstone.model,\
+	com.pds.smartstone.service,\
+	com.pds.smartstone.service.persistence
+-check: EXPORTS
+-includeresource: META-INF/service.xml=../smartstone-service/service.xml

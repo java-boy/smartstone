@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="com.pds.smartstone.model.PersistedAttribute">
+		<field name="uuid" type="String" />
+		<field name="id" type="long" />
+		<field name="typeId" type="long" />
+		<field name="value" type="String" />
+		<field name="description" type="String" />
+		<field name="languageId" type="long" />
+		<field name="createdOn" type="Date" />
+		<field name="createdBy" type="long" />
+		<field name="modifiedOn" type="Date" />
+		<field name="modifiedBy" type="long" />
+		<field name="deletedOn" type="Date" />
+		<field name="deletedBy" type="long" />
+	</model>
+	<model name="com.pds.smartstone.model.PersistedAttributeType">
+		<field name="uuid" type="String" />
+		<field name="id" type="long" />
+		<field name="name" type="String" />
+		<field name="code" type="String" />
+		<field name="description" type="String" />
+	</model>
+</model-hints>

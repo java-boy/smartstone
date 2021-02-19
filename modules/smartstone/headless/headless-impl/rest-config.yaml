@@ -1,0 +1,7 @@
+apiDir: "../headless-api/src/main/java"
+apiPackagePath: "com.pds.headless"
+application:
+    baseURI: "/headless"
+    className: "HeadlessApplication"
+    name: "Headless"
+author: "reza"

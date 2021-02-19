@@ -1,0 +1,7 @@
+Bundle-Name: headless-api
+Bundle-SymbolicName: com.pds.headless.api
+Bundle-Version: 1.0.0
+Export-Package: \
+    	com.pds.headless.dto.v1_0,\
+    	com.pds.headless.resource.v1_0,\
+    	com.pds.smartstone.model.impl

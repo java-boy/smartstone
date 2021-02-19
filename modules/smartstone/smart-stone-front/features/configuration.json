@@ -1,0 +1,13 @@
+{ 
+	"$schema": "https://raw.githubusercontent.com/liferay/liferay-js-toolkit/master/resources/schemas/configuration.schema.json",
+	"system": {
+		"category": "smart-stone-front", 
+		"name": "smart-stone-front",
+		"fields": { 
+		} 
+	},
+	"portletInstance": {
+		"fields": { 
+		} 
+	}
+}
